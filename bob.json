@@ -1,0 +1,62 @@
+{
+    "vulnerable_principal": "arn:aws:iam::123456789012:user/bob",
+    "reachable_admin_principals": {
+        "arn:aws:iam::123456789012:user/it_admin": [
+            {
+                "reason": "can create access keys to authenticate as",
+                "remediations": [
+                    {
+                        "policy": [
+                            {
+                                "Effect": "Deny",
+                                "Action": [
+                                    "iam:CreateAccessKey"
+                                ],
+                                "Resource": [
+                                    "arn:aws:iam::123456789012:user/it_admin"
+                                ]
+                            }
+                        ],
+                        "patch_me": 0
+                    }
+                ]
+            }
+        ],
+        "arn:aws:iam::123456789012:role/it_admin_role": [
+            {
+                "reason": "can use EC2 to run an instance and then associate an existing instance profile to access",
+                "remediations": [
+                    {
+                        "policy": [
+                            {
+                                "Effect": "Deny",
+                                "Action": [
+                                    "iam:PassRole"
+                                ],
+                                "Resource": [
+                                    "arn:aws:iam::123456789012:role/it_admin_role"
+                                ]
+                            }
+                        ],
+                        "patch_me": 0
+                    },
+                    {
+                        "policy": [
+                            {
+                                "Effect": "Deny",
+                                "Action": [
+                                    "ec2:AssociateIamInstanceProfile"
+                                ],
+                                "Resource": [
+                                    "*"
+                                ]
+                            }
+                        ],
+                        "patch_me": 0
+                    }
+                ]
+            }
+        ]
+    }
+}
+

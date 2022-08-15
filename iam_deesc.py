@@ -93,7 +93,7 @@ def parseArgs():
     audit_cmd_parser = subparser.add_parser(
         'audit',
          description='''Search for pricipals with privilege escalation risks. Under the hood, it models the principals as a graph using PMapper and searchs for privilege escalation paths from non-admin principals to admin principals. --principal parameter restricts the search to only the specified principals ''',
-        help=''' Pull the IAM information from an AWS account and serach for principals with privilege escalation risks. 
+        help=''' Pull the IAM information from an AWS account and search for principals with privilege escalation risks. 
         E.g., python3 iam_desc.py --profile my_prof audit  '''       
     )    
     # Add arguments for the subcommand    

@@ -17,7 +17,7 @@ def loadFromJson(filepath):
 
 def dumpToJson(obj, filePath, indent=None):
     ''' dump a python object to Json'''
-    with open(filePath, 'w') as fp:
+    with open(filePath, 'w', encoding='utf-8') as fp:
         json.dump(obj, fp, default=str, indent = indent)
 
 principal_re = re.compile(r':\d{12}:(.+)')
